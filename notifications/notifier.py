@@ -27,6 +27,7 @@ def _run_context() -> str:
         )
     return f"Host: {host}"
 
+
 def send_teams_alert(title: str, message: str) -> bool:
     webhook_url = _get("TEAMS_WEBHOOK_URL")
     if not webhook_url:
@@ -40,26 +41,6 @@ def send_teams_alert(title: str, message: str) -> bool:
         "themeColor": "D93F3F",
         "title": f"⚠️ {title}",
         "text": f"{message}\n\n{_run_context()}",
-    }
-
-    try:
-        response = requests.post(webhook_url, json=payload, timeout=20)
-        response.raise_for_status()
-        print("Teams notification sent.")
-        return True
-    except requests.RequestException as e:
-        print(f"Failed to send Teams notification: {e}")
-        return False
-    webhook_url = _get("TEAMS_WEBHOOK_URL")
-    if not webhook_url:
-        print("Teams notification skipped: TEAMS_WEBHOOK_URL is not set.")
-        return False
-
-    payload = {
-        "title": title,
-        "message": message,
-        "context": _run_context(),
-        "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
     try:
