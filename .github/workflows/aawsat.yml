@@ -13,6 +13,7 @@ jobs:
       SFTP_USERNAME: testuser
       SFTP_PASSWORD: testpass
       SFTP_REMOTE_PATH: /upload
+      TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
 
     steps:
       - name: Checkout repository
