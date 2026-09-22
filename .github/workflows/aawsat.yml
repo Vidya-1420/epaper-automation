@@ -7,6 +7,13 @@ jobs:
   download-epaper:
     runs-on: ubuntu-latest
 
+    env:
+      SFTP_HOST: 127.0.0.1
+      SFTP_PORT: 2222
+      SFTP_USERNAME: testuser
+      SFTP_PASSWORD: testpass
+      SFTP_REMOTE_PATH: /upload
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,5 +26,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Start test SFTP server
+        run: |
+          docker run -d \
+            --name test-sftp \
+            -p 2222:22 \
+            atmoz/sftp \
+            testuser:testpass:::upload
+          sleep 5
+
       - name: Run Aawsat automation
         run: python main.py
+
+      - name: Check uploaded files
+        run: |
+          docker exec test-sftp find /home/testuser/upload -type f -ls
