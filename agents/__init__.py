@@ -1,0 +1,1 @@
+# Newspaper-specific automation agents
