@@ -11,7 +11,7 @@ jobs:
       SFTP_HOST: 127.0.0.1
       SFTP_PORT: 2222
       SFTP_USERNAME: testuser
-      SFTP_PASSWORD: wrongpassword
+      SFTP_PASSWORD: testpass
       SFTP_REMOTE_PATH: /upload
       TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
       EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
