@@ -10,7 +10,7 @@ def main():
 
     print("=== Step 1: Downloading Aawsat E-Paper ===")
     try:
-        agent = AawsatAgent(download_dir=r"C:\vidya\news")
+        agent = AawsatAgent()
         downloaded_file = agent.download_pdf()
         print(f"Download completed successfully: {downloaded_file}")
     except Exception as e:
