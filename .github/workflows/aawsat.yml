@@ -3,7 +3,8 @@ name: Aawsat E-Paper Automation
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/20 * * * *"
+    - cron: "*/5 * * * *"
+
 
 jobs:
   download-epaper:
